@@ -18,7 +18,8 @@ Requires(postun): systemd
 %{summary}
 
 %prep
-%setup -a 1 -a 2 -n alertmanager-%{version}.linux-amd64
+ls
+%setup -n alertmanager-%{version}.linux-amd64
 
 %build
 
@@ -27,12 +28,12 @@ install -d -m 0774 /var/run/prometheus
 install -d -m 0744 /var/log/prometheus
 install -d -m 0755 /lib/log/prometheus
 
-install -p -Dm 0755 alertmanager %{_bindir}/alertmanager
-install -p -Dm 0755 amtool %{_bindir}/amtool
-install -p -Dm 0644 alertmanager.yml %{_sysconfdir}/prometheus/alertmanager.yml
+install -p -Dm 0755 alertmanager %{buildroot}%{_bindir}/alertmanager
+install -p -Dm 0755 amtool %{buildroot}%{_bindir}/amtool
+install -p -Dm 0644 alertmanager.yml %{buildroot}%{_sysconfdir}/prometheus/alertmanager.yml
 
-install -p -Dm 0644 prometheus-alertmanager.service %{buildroot}%{_unitdir}/prometheus-alertmanager.service
-install -p -Dm 0644 prometheus-alertmanager.sysconfig %{_sysconfdir}/sysconfig/alert-manager
+install -p -Dm 0644 %{_sourcedir}/prometheus-alertmanager.service %{buildroot}%{_unitdir}/prometheus-alertmanager.service
+install -p -Dm 0644 %{_sourcedir}/prometheus-alertmanager.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/prometheus-alertmanager
 
 %pre
 getent group prometheus >/dev/null || groupadd -r prometheus
@@ -57,6 +58,7 @@ chmod 744 /var/log/prometheus
 %defattr(-,root,root,-)
 /usr/bin/alertmanager
 /usr/bin/amtool
-%config(noreplace) %{_sysconfdir}/prometheus/alertmanager.yaml
-/usr/lib/systemd/system/alertmanager.service
+%config(noreplace) %{_sysconfdir}/prometheus/alertmanager.yml
+%config(noreplace) /etc/sysconfig/prometheus-alertmanager
+/usr/lib/systemd/system/prometheus-alertmanager.service
 %license LICENSE
