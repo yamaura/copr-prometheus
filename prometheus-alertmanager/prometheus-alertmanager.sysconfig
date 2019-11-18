@@ -1,2 +1,2 @@
 # Setup arguments for /usr/bin/alertmanager
-ARGS=""
+OPTIONS="-config.file /etc/prometheus/alertmanager.yml"
