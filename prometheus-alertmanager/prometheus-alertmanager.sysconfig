@@ -1,0 +1,2 @@
+# Setup arguments for /usr/bin/alertmanager
+ARGS=""
