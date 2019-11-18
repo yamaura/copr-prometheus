@@ -24,9 +24,9 @@ ls
 %build
 
 %install
-install -d -m 0774 /var/run/prometheus
-install -d -m 0744 /var/log/prometheus
-install -d -m 0755 /lib/log/prometheus
+install -d -m 0774 %{buildroot}/var/run/prometheus
+install -d -m 0744 %{buildroot}/var/log/prometheus
+install -d -m 0755 %{buildroot}/lib/log/prometheus
 
 install -p -Dm 0755 alertmanager %{buildroot}%{_bindir}/alertmanager
 install -p -Dm 0755 amtool %{buildroot}%{_bindir}/amtool
@@ -41,7 +41,9 @@ getent passwd prometheus >/dev/null || \
   useradd -r -g prometheus -s /sbin/nologin \
     -d ${buildroot}/var/lib/prometheus/ -c "Prometheus" prometheus
 chgrp prometheus /var/run/prometheus
+mkdir -p /var/run/prometheus
 chmod 774 /var/run/prometheus
+mkdir -p /var/log/prometheus
 chown prometheus:prometheus /var/log/prometheus
 chmod 744 /var/log/prometheus
 
