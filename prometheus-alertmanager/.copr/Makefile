@@ -3,6 +3,6 @@
 all: srpm
 
 srpm:
-	yum install -y rpmdevtools
+	dnf install -y rpmdevtools
 	spectool -g -R. ./prometheus-alertmanager.spec
 	rpmbuild -bs prometheus-alertmanager.spec --define "_sourcedir $(PWD)" --define "_srcrpmdir $(outdir)"
