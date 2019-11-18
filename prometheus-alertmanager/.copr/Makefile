@@ -1,4 +1,6 @@
-.PHONY: srpm
+.PHONY:all srpm
+
+all: srpm
 
 srpm:
 	yum install -y rpmdevtools
