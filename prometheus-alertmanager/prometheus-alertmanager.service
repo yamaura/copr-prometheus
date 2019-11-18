@@ -6,7 +6,7 @@ Documentation=https://prometheus.io/docs/alerting/alertmanager/
 Restart=always
 User=prometheus
 EnvironmentFile=/etc/sysconfig/prometheus-alertmanager
-ExecStart=/usr/bin/alertmanager $OPTIONS
+ExecStart=/usr/bin/alertmanager --config.file /etc/prometheus/alertmanager.yml --storage.path=/var/run/prometheus/alertmanager $OPTIONS
 ExecReload=/bin/kill -HUP $MAINPID
 TimeoutStopSec=20s
 SendSIGKILL=no
