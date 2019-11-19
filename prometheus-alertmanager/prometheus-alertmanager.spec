@@ -40,8 +40,8 @@ getent group prometheus >/dev/null || groupadd -r prometheus
 getent passwd prometheus >/dev/null || \
   useradd -r -g prometheus -s /sbin/nologin \
     -d ${buildroot}/var/lib/prometheus/ -c "Prometheus" prometheus
-chgrp prometheus /var/run/prometheus
 mkdir -p /var/run/prometheus
+chgrp prometheus /var/run/prometheus
 chmod 774 /var/run/prometheus
 mkdir -p /var/log/prometheus
 chown prometheus:prometheus /var/log/prometheus
