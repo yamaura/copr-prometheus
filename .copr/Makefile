@@ -1,1 +1,1 @@
-include .copr/Makefile
+include Makefile
