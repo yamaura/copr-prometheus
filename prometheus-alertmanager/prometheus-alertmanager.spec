@@ -2,7 +2,7 @@
 
 Name:             prometheus-alertmanager
 Version:          0.19.0
-Release:          2%{?dist}
+Release:          3%{?dist}
 Summary:          Prometheus Alertmanager
 License:          Apache License Version 2.0
 URL:              https://prometheus.io/
