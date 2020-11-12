@@ -1,0 +1,2 @@
+# Setup arguments for /usr/bin/node_exporter
+OPTIONS="--collector.textfile.directory /var/lib/node_exporter/textfile_collector"

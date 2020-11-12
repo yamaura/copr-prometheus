@@ -1,0 +1,15 @@
+[Unit]
+Description=Prometheus Node Exporter
+Documentation=https://prometheus.io/docs/introduction/overview/
+
+[Service]
+Restart=always
+User=node_exporter
+EnvironmentFile=/etc/sysconfig/prometheus-node_exporter
+ExecStart=/usr/bin/node_exporter $OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
