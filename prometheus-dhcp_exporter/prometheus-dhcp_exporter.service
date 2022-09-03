@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus DHCP Exporter
+Documentation=https://github.com/MindFlavor/prometheus_dhcp_exporter/
+
+[Service]
+Restart=always
+EnvironmentFile=/etc/sysconfig/prometheus-dhcp_exporter
+ExecStart=/usr/sbin/prometheus-dhcp_exporter $OPTIONS
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
